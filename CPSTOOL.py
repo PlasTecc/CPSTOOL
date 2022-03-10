@@ -29,7 +29,7 @@ except FileNotFoundError:
     key = json.load(open("key.json", "rb"))["key"]
 
 current_day = date.today().strftime("%A")
-api_key = "your_api_key_here"
+api_key = "api key here"
 api_url = "https://api.jsonbin.io/v3/b/"
 api_header = {"X-Master-Key": api_key}
 
@@ -178,15 +178,19 @@ def createtimetableMenu():
     allsubjects = sorted(list(dict.fromkeys(allsubjects)))
 
     while True:
-        banner()
         for subject in allsubjects:
             while True:
+                banner()
                 zoom_code = input(f"{subject}: https://cpsbahrain.zoom.us/j/")
-                if len(zoom_code) >= 10 and zoom_code.isdecimal():
+                if len(zoom_code) >= 9 and zoom_code.isdecimal():
+                    data["zoomlinks"][subject] = f"https://cpsbahrain.zoom.us/j/{zoom_code}"
+                    break
+                elif zoom_code == "":
                     data["zoomlinks"][subject] = f"https://cpsbahrain.zoom.us/j/{zoom_code}"
                     break
                 else:
                     print(f"{bcolors.WARNING}INVALID CODE!{bcolors.ENDC}")
+                    input(f"{bcolors.FAIL}PRESS ENTER TO RETRY{bcolors.ENDC}")
 
         tabulate_zoomlink = []
 
