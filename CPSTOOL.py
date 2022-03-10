@@ -20,16 +20,18 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
+appdata = os.getenv('APPDATA')
+
 try:
-    key = json.load(open("key.json", "rb"))["key"]
+    key = json.load(open(f"{appdata}\\key.json", "rb"))["key"]
 except FileNotFoundError:
     json_data = {"key": " "}
-    with open("key.json", "w") as outfile:
+    with open(f"{appdata}\\key.json", "w") as outfile:
         json.dump(json_data, outfile)
-    key = json.load(open("key.json", "rb"))["key"]
+    key = json.load(open(f"{appdata}\\key.json", "rb"))["key"]
 
 current_day = date.today().strftime("%A")
-api_key = "api key here"
+api_key = "ApiKeyHere"
 api_url = "https://api.jsonbin.io/v3/b/"
 api_header = {"X-Master-Key": api_key}
 
@@ -94,50 +96,47 @@ def joinmeetingMenu():
                     subject_choice = int(input("> "))
                     if 0 < subject_choice <= len(timetable):
                         subject_index = subject_choice - 1
-                        if zoomlinks[timetable[subject_index]]:
+                        if len(zoomlinks[timetable[subject_index]]) > 29:
                             webbrowser.open(
                                 zoomlinks[timetable[subject_index]])
                             if input(f"{bcolors.WARNING}WOULD YOU LIKE TO GO BACK? (Y/N): {bcolors.ENDC}").upper() == "Y":
                                 mainMenu()
                             else:
-                                endMenu()
+                                joinmeetingMenu()
                         else:
-                            print(
-                                f"{bcolors.WARNING}PLEASE CHECK WHATSAPP FOR THE LINK!{bcolors.ENDC}")
+                            print(f"{bcolors.FAIL}CHECK WHATSAPP!{bcolors.ENDC}")
                             if input(f"{bcolors.WARNING}WOULD YOU LIKE TO GO BACK? (Y/N): {bcolors.ENDC}").upper() == "Y":
                                 mainMenu()
                             else:
-                                endMenu()
+                                joinmeetingMenu()
                     else:
                         print(f"{bcolors.FAIL}INVALID CHOICE!{bcolors.ENDC}")
                         if input(f"{bcolors.WARNING}WOULD YOU LIKE TO GO BACK? (Y/N): {bcolors.ENDC}").upper() == "Y":
                             mainMenu()
                         else:
-                            endMenu()
+                            joinmeetingMenu()
                 except ValueError:
                     print(f"{bcolors.FAIL}INVALID INPUT!{bcolors.ENDC}")
                     if input(f"{bcolors.WARNING}WOULD YOU LIKE TO GO BACK? (Y/N): {bcolors.ENDC}").upper() == "Y":
                         mainMenu()
                     else:
-                        endMenu()
+                        joinmeetingMenu()
             else:
                 print(f"{bcolors.FAIL}INVALID KEY!{bcolors.ENDC}")
-                if input(f"{bcolors.WARNING}WOULD YOU LIKE TO GO BACK? (Y/N): {bcolors.ENDC}").upper() == "Y":
-                    mainMenu()
-                else:
-                    endMenu()
+                input(f"{bcolors.WARNING}PRESS ENTER TO GO BACK...{bcolors.ENDC}")
+                mainMenu()
         else:
             print(f"{bcolors.FAIL}INVALID KEY!{bcolors.ENDC}")
             if input(f"{bcolors.WARNING}WOULD YOU LIKE TO GO BACK? (Y/N): {bcolors.ENDC}").upper() == "Y":
                 mainMenu()
             else:
-                endMenu()
+                joinmeetingMenu()
     else:
         print(f"{bcolors.WARNING}THERE IS NO SCHOOL TODAY!{bcolors.ENDC}")
         if input(f"{bcolors.WARNING}WOULD YOU LIKE TO GO BACK? (Y/N): {bcolors.ENDC}").upper() == "Y":
             mainMenu()
         else:
-            endMenu()
+            joinmeetingMenu()
 
 
 def createtimetableMenu():
@@ -231,7 +230,7 @@ def editkeyMenu():
         if input(f"{bcolors.WARNING}ARE YOU SURE THIS IS THE CORRECT KEY? (Y/N): {bcolors.ENDC}").upper() == "Y":
             break
 
-    with open("key.json", "w") as outfile:
+    with open(f"{appdata}\\key.json", "w") as outfile:
         json.dump(key_json, outfile)
     global key
     key = new_key
