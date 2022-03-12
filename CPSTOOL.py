@@ -128,8 +128,8 @@ def joinMenu():
 
 
 def createMenu():
-    banner()
     while True:
+        banner()
         new_classroom = input("CLASSROOM: ")
         new_data = {"timetable": {"Sunday": [], "Monday": [], "Tuesday": [],
                                   "Wednesday": [], "Thursday": []}, "zoomlinks": {}, "classroom": new_classroom}
