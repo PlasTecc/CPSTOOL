@@ -27,7 +27,8 @@ try:
     selected_key = json.load(open(f"{appdata}\\data.json", "rb"))["key"]
     classroom = json.load(open(f"{appdata}\\data.json", "rb"))["classroom"]
 except FileNotFoundError:
-    json_data = {"key": "", "timetable": {}, "zoomlinks": {}, "classroom": ""}
+    json_data = {"key": "key_here", "timetable": {},
+                 "zoomlinks": {}, "classroom": "classroom_here"}
     with open(f"{appdata}\\data.json", "w") as outfile:
         json.dump(json_data, outfile)
     selected_key = json.load(open(f"{appdata}\\data.json", "rb"))["key"]
@@ -98,7 +99,7 @@ def joinMenu():
                     zoomlink = zoomlinks[currentday_timetable[subject_index]]
                     if len(zoomlink) >= 30:
                         webbrowser.open(zoomlink)
-                        if input("WOULD YOU LIKE TO TRY AGAIN? (Y/N): ").upper() == "Y":
+                        if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "Y":
                             joinMenu()
                         else:
                             mainMenu()
