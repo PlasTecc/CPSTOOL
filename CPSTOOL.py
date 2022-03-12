@@ -294,7 +294,7 @@ def endMenu(timer=3):
     for i in range(timer, 0, -1):
         banner()
         print(
-            f"Thanks for using CPSTOOL developed by PlasTec. Exiting in {i} seconds...")
+            f"Thanks for using CPSTOOL developed by PlasTec. Exiting in {i}")
         sleep(1)
     exit()
 
