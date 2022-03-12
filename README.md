@@ -8,7 +8,6 @@ CPSTOOL is a tool designed to help the user manage his online zoom links and sha
 ## Features of CPSTOOL
 * MANAGE TIMETABLES AND ZOOM LINKS
 * CREATE TIMETABLES AND ZOOM LINKS
-* LIGHT WIEGHT
 * SHARE TIMETABLES AND ZOOM LINKS USING A KEY
 * LIGHT WIEGHT
 
