@@ -30,7 +30,7 @@ except FileNotFoundError:
     json_data = {"key": "key_here", "timetable": {},
                  "zoomlinks": {}, "classroom": "classroom_here"}
     with open(f"{appdata}\\data.json", "w") as outfile:
-        json.dump(json_data, outfile)
+        json.dump(json_data, outfile, indent=4, sort_keys=True)
     selected_key = json.load(open(f"{appdata}\\data.json", "rb"))["key"]
     classroom = json.load(open(f"{appdata}\\data.json", "rb"))["classroom"]
 
@@ -233,7 +233,7 @@ def keyMenu():
                         "classroom": data["record"]["classroom"]
                     }
                     with open(f"{appdata}\\data.json", "w") as outfile:
-                        json.dump(data_json, outfile)
+                        json.dump(data_json, outfile, indent=4, sort_keys=True)
                     global selected_key
                     global timetable
                     global zoomlinks
