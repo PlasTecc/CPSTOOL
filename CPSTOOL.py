@@ -87,7 +87,7 @@ def mainMenu():
 
 def joinMenu():
     banner()
-    if selected_key:
+    if selected_key and len(selected_key) >= 24:
         if current_day != "Friday" and current_day != "Saturday":
             currentday_timetable = timetable[current_day]
             for subject in currentday_timetable:
@@ -198,12 +198,14 @@ def createMenu():
 
     while True:
         api_header["Content-Type"] = "application/json"
+        api_header["X-Bin-Private"] = "false"
         r = requests.post(api_url, json=new_data, headers=api_header)
         if r.status_code == 200:
             new_key = r.json()["metadata"]["id"]
             print(f"{bcolors.OKGREEN}Your key is: {new_key}{bcolors.ENDC}")
             pyperclip.copy(new_key)
             api_header.pop("Content-Type")
+            api_header.pop("X-Bin-Private")
             input(f"{bcolors.WARNING}PRESS ENTER TO GO BACK...{bcolors.ENDC}")
             break
         else:
