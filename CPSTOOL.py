@@ -268,7 +268,7 @@ def keyMenu():
 
 def viewMenu():
     banner()
-    if selected_key:
+    if selected_key and len(selected_key) >= 24:
         tabulate_header = ["", "1", "2", "3", "4", "5", "6", "7", "8"]
         tabulate_timetable = [[], [], [], [], []]
         index = 0
