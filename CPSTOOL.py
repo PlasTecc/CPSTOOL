@@ -79,10 +79,10 @@ def mainMenu():
             raise ValueError
     except ValueError:
         print(f"{bcolors.FAIL}INVALID INPUT!{bcolors.ENDC}")
-        if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "Y":
-            mainMenu()
-        else:
+        if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "N":
             endMenu()
+        else:
+            mainMenu()
 
 
 def joinMenu():
@@ -99,24 +99,24 @@ def joinMenu():
                     zoomlink = zoomlinks[currentday_timetable[subject_index]]
                     if len(zoomlink) >= 30:
                         webbrowser.open(zoomlink)
-                        if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "Y":
-                            joinMenu()
-                        else:
+                        if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "N":
                             mainMenu()
+                        else:
+                            joinMenu()
                     else:
                         print(f"{bcolors.FAIL}CHECK WHATSAPP!{bcolors.ENDC}")
-                        if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "Y":
-                            joinMenu()
-                        else:
+                        if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "N":
                             mainMenu()
+                        else:
+                            joinMenu()
                 else:
                     raise Exception
             except Exception:
                 print(f"{bcolors.FAIL}INVALID CHOICE!{bcolors.ENDC}")
-                if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "Y":
-                    joinMenu()
-                else:
+                if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "N":
                     mainMenu()
+                else:
+                    joinMenu()
         else:
             print(f"{bcolors.FAIL}THERE IS NO SCHOOL TODAY!{bcolors.ENDC}")
             input(f"{bcolors.WARNING}PRESS ENTER TO GO...{bcolors.ENDC}")
@@ -254,16 +254,16 @@ def keyMenu():
             else:
                 raise Exception
         else:
-            if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "Y":
-                keyMenu()
-            else:
+            if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "N":
                 mainMenu()
+            else:
+                keyMenu()
     except Exception:
         print(f"{bcolors.FAIL}INVALID KEY!{bcolors.ENDC}")
-        if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "Y":
-            keyMenu()
-        else:
+        if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "N":
             mainMenu()
+        else:
+            keyMenu()
 
 
 def viewMenu():
