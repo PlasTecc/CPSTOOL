@@ -58,15 +58,12 @@ zoomlinks = json.load(open(f"{appdata}\\data.json", "rb"))["zoomlinks"]
 def mainMenu():
     try:
         banner()
-        print("0. EXIT")
         print("1. JOIN MEETING")
         print("2. CREATE TIMETABLE")
         print("3. EDIT KEY")
         print("4. VIEW CURRENT SELECTED TIMETABLE")
         user_input = input("> ")
-        if 0 <= int(user_input) <= 4:
-            if int(user_input) == 0:
-                endMenu()
+        if 1 <= int(user_input) <= 4:
             if int(user_input) == 1:
                 joinMenu()
             if int(user_input) == 2:
@@ -80,7 +77,12 @@ def mainMenu():
     except ValueError:
         print(f"{bcolors.FAIL}INVALID INPUT!{bcolors.ENDC}")
         if input(f"{bcolors.WARNING}WOULD YOU LIKE TO TRY AGAIN? (Y/N): {bcolors.ENDC}").upper() == "N":
-            endMenu()
+            for i in range(3, 0, -1):
+                banner()
+                print(
+                    f"Thanks for using CPSTOOL developed by PlasTec. Exiting in {i}")
+                sleep(1)
+            exit()
         else:
             mainMenu()
 
@@ -292,15 +294,6 @@ def viewMenu():
         print(f"{bcolors.FAIL}PLEASE INPUT A KEY!{bcolors.ENDC}")
         input(f"{bcolors.WARNING}PRESS ENTER TO GO BACK...{bcolors.ENDC}")
         mainMenu()
-
-
-def endMenu(timer=3):
-    for i in range(timer, 0, -1):
-        banner()
-        print(
-            f"Thanks for using CPSTOOL developed by PlasTec. Exiting in {i}")
-        sleep(1)
-    exit()
 
 
 mainMenu()
