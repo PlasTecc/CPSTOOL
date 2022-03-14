@@ -135,6 +135,8 @@ def createMenu():
                                   "Wednesday": [], "Thursday": []}, "zoomlinks": {}, "classroom": new_classroom}
         for day in new_data["timetable"]:
             banner()
+            print(
+                f"{bcolors.WARNING}LEAVE INPUT EMPTY FOR TO GO THE NEXT DAY!{bcolors.ENDC}")
             print(f"{day}: ")
             count = 1
             while count <= 8:
