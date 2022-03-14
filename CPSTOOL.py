@@ -82,7 +82,6 @@ def mainMenu():
                 print(
                     f"Thanks for using CPSTOOL developed by PlasTec. Exiting in {i}")
                 sleep(1)
-            exit()
         else:
             mainMenu()
 
